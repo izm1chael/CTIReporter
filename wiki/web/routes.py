@@ -129,6 +129,18 @@ def cve(name):
     cveed = current_wiki.index_by_cve(name)
     return render_template('indexes/cve.html', pages=cveed, cve=name)
 
+@bp.route('/ips/')
+@protect
+def ips():
+    ips = current_wiki.get_ips()
+    return render_template('indexes/ips.html', ips=ips)
+
+@bp.route('/ip/<string:name>/')
+@protect
+def ip(name):
+    iped = current_wiki.index_by_ip(name)
+    return render_template('indexes/ip.html', pages=iped, ip=name)
+
 @bp.route('/search/', methods=['GET', 'POST'])
 @protect
 def search():

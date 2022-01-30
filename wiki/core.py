@@ -306,6 +306,17 @@ class Page(object):
         self['cves'] = value
 
     @property
+    def ips(self):
+        try:
+            return self['ips']
+        except KeyError:
+            return ""
+
+    @cves.setter
+    def ips(self, value):
+        self['ips'] = value
+
+    @property
     def tags(self):
         try:
             return self['tags']
@@ -457,6 +468,21 @@ class Wiki(object):
                     cves[cve] = [page]
         return cves
 
+    def get_ips(self):
+        pages = self.index()
+        ips = {}
+        for page in pages:
+            pageips = page.ips.split(',')
+            for ip in pageips:
+                ip = ip.strip()
+                if ip == '':
+                    continue
+                elif ips.get(ip):
+                    ips[ip].append(page)
+                else:
+                    ips[ip] = [page]
+        return ips
+
     def index_by_tag(self, tag):
         pages = self.index()
         tagged = []
@@ -472,6 +498,14 @@ class Wiki(object):
             if cve in page.cves:
                 cveed.append(page)
         return sorted(cveed, key=lambda x: x.title.lower())
+
+    def index_by_ip(self, ip):
+        pages = self.index()
+        iped = []
+        for page in pages:
+            if ip in page.ips:
+                iped.append(page)
+        return sorted(iped, key=lambda x: x.title.lower())
 
     def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body', 'date', 'apt_number', 'apt_name', 'threat_level', 'business_impact', 'ip_ioc', 'url_ioc', 'hash_ioc', 'cve_tags']):
         pages = self.index()

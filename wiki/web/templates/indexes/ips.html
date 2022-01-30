@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "ips" %}
+
+{% block title %}Index by IP Addresses{% endblock title %}
+
+{% block content %}
+{% if ips %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>IP Address</th>
+				<th>Number of Articles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for ip, pages in ips|dictsort %}
+				<tr>
+					<td><a href="{{ url_for('wiki.ip', name=ip) }}">{{ ip }}</a></td>
+					<td>{{ pages|length }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no IP Addresses in use so far.</p>
+{% endif %}
+{% endblock content %}

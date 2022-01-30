@@ -53,11 +53,11 @@
       {% endif %}
       </div>
       <div>
-        {% if page.cves %}
-        <h5>Associated IP's</h5>
+        {% if page.ips %}
+        <h5>Associated Ip Addresses</h5>
           <ul>
-          {% for cve in page.cves.split(',') %}
-            <li><a href="{{ url_for('wiki.cve', name=cve.strip()) }}">{{ cve|trim }}</a></li>
+          {% for ip in page.ips.split(',') %}
+            <li><a href="{{ url_for('wiki.ip', name=ip.strip()) }}">{{ ip|trim }}</a></li>
           {% endfor %}
           </ul>
       {% endif %}
@@ -69,7 +69,14 @@
         <h5>Associated File Hashes</h5>
       </div>
       <div>
+        {% if page.cves %}
         <h5>Associated CVE's</h5>
+          <ul>
+          {% for cve in page.cves.split(',') %}
+            <li><a href="{{ url_for('wiki.cve', name=cve.strip()) }}">{{ cve|trim }}</a></li>
+          {% endfor %}
+          </ul>
+      {% endif %}
       </div>
       <div>
         <h5>Actions</h5>
