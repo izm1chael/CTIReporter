@@ -1,4 +1,23 @@
+
 # CTI Reporter
+
+### Description
+CTI Reporter is a small flask application designed to aid in Cyber Threat Intelligence reporting. It has been designed as an editor and organizer of markdown files. It offers the ability to tag various fields within the report and indexes and searches based on those criteria.
+
+### Current Features
+	- Regex Search
+	- Filter by assigned tabs of indicators of compromise
+	- Markdown Editor
+	- Populated Intellegence Cards
+	- Index by fields
+
+
+### Road Map
+
+	 - RBAC - Build out a robust role based accese system
+	 - Export as PDF
+	 - Schedule email of reports
+	 - Admin Section
 
 ## Get Started
 
