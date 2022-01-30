@@ -3,10 +3,32 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-<form class="form form-inline" method="POST">
-	{{ form.hidden_tag() }}
-	{{ form.name(placeholder='Username') }}
-	{{ form.password(placeholder='Password') }}
-	<input type="submit" class="btn btn-primary" value="Login">
-</form>
+<div class="container">
+	<div class="row">
+		<div class="col">
+
+		</div>
+		<div class="col-8">
+		<form class="form form-inline" method="POST">
+			{{ form.hidden_tag() }}
+			<div class="row">
+				<div class="mb-3">
+					{{ form.name(placeholder='Username', class="form-control") }}
+				</div>
+				<div class="md-3">
+					{{ form.password(placeholder='Password', class="form-control") }}
+				</div>
+				<div class="md-3" style="margin-top: 15px;">
+					<div class="d-grid gap-2">
+						<input type="submit" class="btn btn-primary" value="Login">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+		<div class="col">
+
+		</div>
+	</div>
+</div>
 {% endblock content %}

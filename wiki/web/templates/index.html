@@ -1,17 +1,21 @@
 {% extends "base.html" %}
+{% set active_page = "index" %}
 
 {% block title %}Page Index{% endblock title %}
 
 {% block content %}
-{% if pages %}
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Date</th>
-                <th>URL</th>
-			</tr>
-		</thead>
+<dvi class="container">
+	<div class="row">
+		<div class="col-8">
+			{% if pages %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Date</th>
+					<th>URL</th>
+				</tr>
+			</thead>
 		<tbody>
 			{% for page in pages %}
 				<tr>
@@ -22,15 +26,24 @@
 			{% endfor %}
 		</tbody>
 	</table>
-{% else %}
+	{% else %}
 	<p>There are no pages yet.</p>
-{% endif %}
+	{% endif %}
+	</div>
+		<div class="col-4">
+			<ul class="nav flex-column">
+			  <li class="nav-item">
+				<a class="nav-link" aria-current="page" href="{{ url_for('wiki.create') }}">New Report</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="{{ url_for('wiki.tags') }}">Tags</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="{{ url_for('wiki.search') }}">Search</a>
+			  </li>
+			</ul>
+		</div>
+	</div>
+</dvi>
 {% endblock content %}
 
-{% block sidebar %}
-<ul class="nav nav-tabs nav-stacked">
-	<li><a href="{{ url_for('wiki.create') }}">New Page</a></li>
-	<li><a href="{{ url_for('wiki.tags') }}">Tag List</a></li>
-	<li><a href="{{ url_for('wiki.search') }}">Search</a></li>
-</ul>
-{% endblock sidebar %}

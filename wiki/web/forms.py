@@ -41,9 +41,11 @@ class SearchForm(FlaskForm):
 
 
 class EditorForm(FlaskForm):
-    title = StringField('', [InputRequired()])
-    date = StringField('', [InputRequired()])
-    body = TextAreaField('', [InputRequired()])
+    title = StringField('Report Title', [InputRequired()])
+    date = StringField('Date of Report (YYYY-MM-DD)', [InputRequired()])
+    apt_number = StringField('APT Number (APTXX)')
+    apt_name = StringField('APT Name')
+    body = TextAreaField('Your Report (In Markdown)', [InputRequired()])
     threat_level = SelectField(
         choices=[
             ('Low', 'Low'),
@@ -62,8 +64,11 @@ class EditorForm(FlaskForm):
             ('Critical', 'Critical'),
         ]
     )
-    cves = StringField('')
-    tags = StringField('')
+    ip_ioc = StringField('List all IP Addresses')
+    url_ioc = StringField('List all domains names')
+    hash_ioc = StringField('List all file hashes ')
+    cve_tags = StringField('List the assocoaited CVEs')
+    tags = StringField('Your Tags (Comma Separated)')
 
 
 

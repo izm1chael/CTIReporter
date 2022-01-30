@@ -5,40 +5,94 @@ Report Editor
 {%- endblock title %}
 
 {% block content %}
-<ul class="nav nav-tabs">
-	<li class="active"><a href="#editor" data-toggle="tab">Editor</a></li>
-	<li><a href="#preview" data-toggle="tab" id="previewlink">Preview</a></li>
-</ul>
-<div class="tab-content">
-	<div class="tab-pane active" id="editor">
-		<form method="post" class="form">
-			{{ form.hidden_tag() }}
-			{{ input(form.title, placeholder="Title", class="span3", autocomplete="off") }}
-            {{ input(form.date, placeholder="Date", class="span3", autocomplete="off") }}
-            {{ input(form.threat_level, class="span3", autocomplete="off") }}
-            {{ input(form.business_impact, class="span3", autocomplete="off") }}
-            {{ input(form.cves, placeholder="CVE's (comma separated)", class="span7", autocomplete="on") }}
-			{{ input(form.body, placeholder="Markdown", class="span7", rows="20") }}
-			{{ input(form.tags, placeholder="Tags (comma separated)", class="span7", autocomplete="on") }}
-			<div class="form-actions">
-        <div class="pull-left">
-          <a class="btn" href="#preview" id="previewbtn">Preview</a>
-        </div>
-				<div class="pull-right">
-          <a class="btn" href="{{ url_for('wiki.display', url=page.url) }}">Cancel</a>
-					<button class="btn btn-success" type="submit">Save</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="tab-pane" id="preview"></div>
-</div>
-{% endblock content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <ul class="nav nav-tabs">
+	            <li class="nav-item">
+                    <a class="nav-link" href="#editor" data-toggle="tab">Editor</a>
+                </li>
+	            <li class="nav-itmes">
+                    <a class="nav-link" href="#preview" data-toggle="tab" id="previewlink">Preview</a>
+                </li>
+            </ul>
+        <div class="tab-content">
+	        <div class="tab-pane active" id="editor">
+                <div class="row g-2">
+                    <div class="col-md">
+		                <form method="post" class="form">
+			                {{ form.hidden_tag() }}
+                                <p>Intellegence Card Details</p>
+                             <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ input(form.title, placeholder="Title", class="form-control", autocomplete="off") }}
+                                </div>
+                                <div class="col">
+                                    {{ input(form.date, placeholder="Date", class="form-control", autocomplete="off") }}
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 50px;">
+                                <div class="col">
+                                    {{ input(form.apt_number, placeholder="APT28", class="form-control", autocomplete="off") }}
+                                </div>
+                                <div class="col">
+                                    {{ input(form.apt_name, placeholder="Funky Dragons", class="form-control", autocomplete="off") }}
+                                </div>
+                            </div>
+                             <div class="dropdown-divider"></div>
+                                <p>Please asses the Threat Leevle and the Impact to the business</p>
+                             <div class="dropdown-divider"></div>
+                            <div class="row" style="margin-bottom: 50px;">
+                                <div class="col">
+                                    {{ input(form.threat_level, class="form-select", autocomplete="off") }}
+                                </div>
+                                <div class="col">
+                                    {{ input(form.business_impact, class="form-select", autocomplete="off") }}
+                                </div>
+                            </div>
+                             <div class="dropdown-divider"></div>
+                                <p>All the following sections are comma separated</p>
+                             <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col">
+                                    {{ input(form.ip_ioc, placeholder="192.168.0[.].1", class="form-control", autocomplete="off") }}
+                                </div>
+                                <div class="col">
+                                    {{ input(form.url_ioc, placeholder="maliciousdomain[.]com", class="form-control", autocomplete="off") }}
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 50px;">
+                                <div class="col">
+                                    {{ input(form.hash_ioc, placeholder="MD5 Hash", class="form-control", autocomplete="off") }}
+                                </div>
+                                <div class="col">
+                                    {{ input(form.cve_tags, placeholder="CVE's (comma separated)", class="form-control", autocomplete="on") }}
+                                </div>
+                            </div>
 
-{% block sidebar %}
-<h3>Editor How-To</h3>
-<p>This editor is <a href="http://daringfireball.net/projects/markdown/">markdown</a> featured.</p>
-<pre><code>* I
+
+			                {{ input(form.body, placeholder="Markdown", class="form-control", rows="10") }}
+			                {{ input(form.tags, placeholder="Tags (comma separated)", class="form-control", autocomplete="on") }}
+                        </form>
+                    </div>
+                </div>
+			            <div class="form-actions">
+                        <div class="pull-right">
+                            <a class="btn" href="#preview" id="previewbtn">Preview</a>
+                            <a class="btn" href="{{ url_for('wiki.display', url=page.url) }}">Cancel</a>
+                            <button class="btn btn-success" type="submit">Save</button>
+                        </div>
+                    </div>
+                </form>
+	        </div>
+	            <div class="tab-pane" id="preview"></div>
+            </div>
+        </div>
+        <div class="col-4 bg-light text-dark">
+            <h3>Editor How-To</h3>
+                <p>This editor is <a href="http://daringfireball.net/projects/markdown/">markdown</a> featured.</p>
+            <pre><code>* I
 * am
 * a
 * list</code></pre>
@@ -56,8 +110,11 @@ Turns into:
 ## Level 2
 ### Level 3</code></pre>
 <p></p>
+        </div>
+    </div>
+</div>
 
-{% endblock sidebar %}
+{% endblock content %}
 
 {% block postscripts -%}
 {{ super() }}

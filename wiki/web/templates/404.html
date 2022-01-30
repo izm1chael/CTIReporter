@@ -4,6 +4,22 @@
 {% endblock title %}
 
 {% block content %}
-<p>You did not create any content for this page yet.</p>
-<p><a href="{{ url_for('wiki.edit', url=request.path.strip("/")) }}" class="btn btn-success">Create a new page</a></p>
+<div class="container">
+	<div class="row">
+		<div class="col-3">
+
+		</div>
+		<div class="col-6">
+			<div class="card" style="padding: 20px;">
+			<p>You did not create any content for this page yet.</p>
+			<div class="d-grid gap-2">
+			<a role="button" href="{{ url_for('wiki.edit', url=request.path.strip("/")) }}" class="btn btn-success">Create a new page</a>
+			</div>
+			</div>
+		</div>
+		<div class="col-3">
+
+		</div>
+	</div>
+</div>
 {% endblock %}

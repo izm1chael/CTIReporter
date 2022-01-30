@@ -1,9 +1,13 @@
 {% extends "base.html" %}
+{% set active_page = "home" %}
 {% block title -%}
 	CTI Reporter!
 {% endblock title %}
 
 {% block content %}
-<p>You did not create any content yet.</p>
+<div class="container">
+	<p>You did not create any content yet.</p>
 <p><a href="{{ url_for('wiki.edit', url='home') }}" class="btn btn-success">Create a homepage</a></p>
+</div>
+
 {% endblock %}

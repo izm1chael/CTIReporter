@@ -238,6 +238,61 @@ class Page(object):
         self['title'] = value
 
     @property
+    def apt_number(self):
+        try:
+            return self['apt_number']
+        except KeyError:
+            return ''
+
+    @apt_number.setter
+    def apt_number(self, value):
+        self['apt_number'] = value
+
+    @property
+    def apt_name(self):
+        try:
+            return self['apt_name']
+        except KeyError:
+            return ''
+
+    @apt_name.setter
+    def apt_name(self, value):
+        self['apt_name'] = value
+
+    @property
+    def ip_ioc(self):
+        try:
+            return self['ip_ioc']
+        except KeyError:
+            return ''
+
+    @ip_ioc.setter
+    def ip_ioc(self, value):
+        self['ip_ioc'] = value
+
+    @property
+    def url_ioc(self):
+        try:
+            return self['url_ioc']
+        except KeyError:
+            return ''
+
+    @url_ioc.setter
+    def url_ioc(self, value):
+        self['url_ioc'] = value
+
+    @property
+    def hash_ioc(self):
+        try:
+            return self['hash_ioc']
+        except KeyError:
+            return ''
+
+    @hash_ioc.setter
+    def hash_ioc(self, value):
+        self['hash_ioc'] = value
+
+    @property
     def date(self):
         try:
             return self['date']
@@ -266,21 +321,21 @@ class Page(object):
         except KeyError:
             return ""
 
-    @threat_level.setter
+    @business_impact.setter
     def business_impact(self, value):
         self['business_impact'] = value
 
 
     @property
-    def cves(self):
+    def cve_tags(self):
         try:
-            return self['cves']
+            return self['cve_tags']
         except KeyError:
             return ""
 
-    @cves.setter
-    def cves(self, value):
-        self['cves'] = value
+    @cve_tags.setter
+    def cve_tags(self, value):
+        self['cve_tags'] = value
 
     @property
     def tags(self):
@@ -427,7 +482,7 @@ class Wiki(object):
                 tagged.append(page)
         return sorted(tagged, key=lambda x: x.title.lower())
 
-    def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body']):
+    def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body', 'date', 'apt_number', 'apt_name', 'threat_level', 'business_impact', 'ip_ioc', 'url_ioc', 'hash_ioc', 'cve_tags']):
         pages = self.index()
         regex = re.compile(term, re.IGNORECASE if ignore_case else 0)
         matched = []
