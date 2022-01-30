@@ -3,7 +3,7 @@ name: Publish Docker image to Github
 on:
   workflow_run:
     workflows: ["Docker Image CI"]
-    branches: [main]
+    branches: [master]
     types: 
       - completed
     
