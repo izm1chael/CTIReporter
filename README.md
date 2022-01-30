@@ -23,9 +23,9 @@ CTI Reporter is a small flask application designed to aid in Cyber Threat Intell
 
     git clone https://github.com/izm1chael/CTIReporter.git
     cd CTIReporter
-    pip install -r requirments.txt]
+    pip install -r requirments.txt
     mkdir content
-    mkdir users
+    mkdir user
     cat > /user/users.json <<EOL
     {  
 	 "user": {  
