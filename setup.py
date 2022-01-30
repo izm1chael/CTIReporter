@@ -6,7 +6,7 @@ print(find_packages())
 setup(
     name='CTIReporter',
     version='1.0',
-    description='A simple report manager for CTI threat intellegence',
+    description='A simple report manager for cyber threat intellegence',
     author='Mike Johnson',
     url='https://github.com/izm1chael/CTIReporter',
     packages=find_packages(),
