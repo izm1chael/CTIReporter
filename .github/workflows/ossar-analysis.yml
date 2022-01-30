@@ -10,13 +10,13 @@ name: OSSAR
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
     paths-ignore:
       - '**/README.md'
       - '**/workflows/**'
     
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
     paths-ignore:
       - '**/README.md'
       - '**/workflows/**'
