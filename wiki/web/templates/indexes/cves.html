@@ -1,10 +1,10 @@
 {% extends "base.html" %}
-{% set active_page = "cve_tags" %}
+{% set active_page = "cves" %}
 
 {% block title %}Index by CVE's{% endblock title %}
 
 {% block content %}
-{% if cve_tags %}
+{% if cves %}
 	<table class="table">
 		<thead>
 			<tr>
@@ -13,7 +13,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{% for cve, pages in cve_tags|dictsort %}
+			{% for cve, pages in cves|dictsort %}
 				<tr>
 					<td><a href="{{ url_for('wiki.cve', name=cve) }}">{{ cve }}</a></td>
 					<td>{{ pages|length }}</td>

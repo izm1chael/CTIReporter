@@ -259,38 +259,6 @@ class Page(object):
     def apt_name(self, value):
         self['apt_name'] = value
 
-    @property
-    def ip_ioc(self):
-        try:
-            return self['ip_ioc']
-        except KeyError:
-            return ''
-
-    @ip_ioc.setter
-    def ip_ioc(self, value):
-        self['ip_ioc'] = value
-
-    @property
-    def url_ioc(self):
-        try:
-            return self['url_ioc']
-        except KeyError:
-            return ''
-
-    @url_ioc.setter
-    def url_ioc(self, value):
-        self['url_ioc'] = value
-
-    @property
-    def hash_ioc(self):
-        try:
-            return self['hash_ioc']
-        except KeyError:
-            return ''
-
-    @hash_ioc.setter
-    def hash_ioc(self, value):
-        self['hash_ioc'] = value
 
     @property
     def date(self):
@@ -327,15 +295,15 @@ class Page(object):
 
 
     @property
-    def cve_tags(self):
+    def cves(self):
         try:
-            return self['cve_tags']
+            return self['cves']
         except KeyError:
             return ""
 
-    @cve_tags.setter
-    def cve_tags(self, value):
-        self['cve_tags'] = value
+    @cves.setter
+    def cves(self, value):
+        self['cves'] = value
 
     @property
     def tags(self):
@@ -474,20 +442,20 @@ class Wiki(object):
                     tags[tag] = [page]
         return tags
 
-    def get_cve_tags(self):
+    def get_cves(self):
         pages = self.index()
-        cve_tags = {}
+        cves = {}
         for page in pages:
-            pagecvetags = page.cve_tags.split(',')
-            for cve in pagecvetags:
+            pagecves = page.cves.split(',')
+            for cve in pagecves:
                 cve = cve.strip()
                 if cve == '':
                     continue
-                elif cve_tags.get(cve):
-                    cve_tags[cve].append(page)
+                elif cves.get(cve):
+                    cves[cve].append(page)
                 else:
-                    cve_tags[cve] = [page]
-        return cve_tags
+                    cves[cve] = [page]
+        return cves
 
     def index_by_tag(self, tag):
         pages = self.index()
@@ -499,11 +467,11 @@ class Wiki(object):
 
     def index_by_cve(self, cve):
         pages = self.index()
-        cve_tagged = []
+        cveed = []
         for page in pages:
-            if cve in page.cve_tags:
-                cve_tagged.append(page)
-        return sorted(cve_tagged, key=lambda x: x.title.lower())
+            if cve in page.cves:
+                cveed.append(page)
+        return sorted(cveed, key=lambda x: x.title.lower())
 
     def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body', 'date', 'apt_number', 'apt_name', 'threat_level', 'business_impact', 'ip_ioc', 'url_ioc', 'hash_ioc', 'cve_tags']):
         pages = self.index()

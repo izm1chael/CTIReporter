@@ -108,26 +108,26 @@ def delete(url):
 @protect
 def tags():
     tags = current_wiki.get_tags()
-    return render_template('tags.html', tags=tags)
+    return render_template('indexes/tags.html', tags=tags)
 
 
 @bp.route('/tag/<string:name>/')
 @protect
 def tag(name):
     tagged = current_wiki.index_by_tag(name)
-    return render_template('tag.html', pages=tagged, tag=name)
+    return render_template('indexes/tag.html', pages=tagged, tag=name)
 
-@bp.route('/cve_tags/')
+@bp.route('/cves/')
 @protect
-def cve_tags():
-    cve_tags = current_wiki.get_cve_tags()
-    return render_template('cve_tags.html', cve_tags=cve_tags)
+def cves():
+    cves = current_wiki.get_cves()
+    return render_template('indexes/cves.html', cves=cves)
 
 @bp.route('/cve/<string:name>/')
 @protect
 def cve(name):
-    cve_tagged = current_wiki.index_by_cve(name)
-    return render_template('cve.html', pages=cve_tagged, cve=name)
+    cveed = current_wiki.index_by_cve(name)
+    return render_template('indexes/cve.html', pages=cveed, cve=name)
 
 @bp.route('/search/', methods=['GET', 'POST'])
 @protect

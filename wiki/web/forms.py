@@ -64,10 +64,10 @@ class EditorForm(FlaskForm):
             ('Critical', 'Critical'),
         ]
     )
-    ip_ioc = StringField('List all IP Addresses')
-    url_ioc = StringField('List all domains names')
-    hash_ioc = StringField('List all file hashes ')
-    cve_tags = StringField('List the assocoaited CVEs')
+    ips = StringField('List all IP Addresses')
+    domains = StringField('List all domains names')
+    hashes = StringField('List all file hashes ')
+    cves = StringField('List the assocoaited CVEs')
     tags = StringField('Your Tags (Comma Separated)')
 
 
