@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "domains" %}
+
+{% block title %}Index by Domain Names{% endblock title %}
+
+{% block content %}
+{% if domains %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Domain Name</th>
+				<th>Number of Articles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for domain, pages in domains|dictsort %}
+				<tr>
+					<td><a href="{{ url_for('wiki.domain', name=domain) }}">{{ domain }}</a></td>
+					<td>{{ pages|length }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no domain names in use so far.</p>
+{% endif %}
+{% endblock content %}

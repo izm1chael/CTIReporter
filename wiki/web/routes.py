@@ -141,6 +141,30 @@ def ip(name):
     iped = current_wiki.index_by_ip(name)
     return render_template('indexes/ip.html', pages=iped, ip=name)
 
+@bp.route('/domains/')
+@protect
+def domains():
+    domains = current_wiki.get_domains()
+    return render_template('indexes/domains.html', domains=domains)
+
+@bp.route('/domain/<string:name>/')
+@protect
+def domain(name):
+    domained = current_wiki.index_by_domain(name)
+    return render_template('indexes/domain.html', pages=domained, domain=name)
+
+@bp.route('/hashes/')
+@protect
+def filehashes():
+    filehashes = current_wiki.get_filehashes()
+    return render_template('indexes/hashes.html', filehashes=filehashes)
+
+@bp.route('/hash/<string:name>/')
+@protect
+def filehash(name):
+    filehashed = current_wiki.index_by_filehash(name)
+    return render_template('indexes/hash.html', pages=filehashed, filehash=name)
+
 @bp.route('/search/', methods=['GET', 'POST'])
 @protect
 def search():

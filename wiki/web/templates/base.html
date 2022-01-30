@@ -49,6 +49,8 @@
             <li><a class="dropdown-item {{ 'active' if active_page == 'tags' else '' }}" href="{{ url_for('wiki.tags') }}">Tags</a></li>
 		  	<li><a class="dropdown-item {{ 'active' if active_page == 'cves' else '' }}" href="{{ url_for('wiki.cves') }}">CVE's</a></li>
 		  	<li><a class="dropdown-item {{ 'active' if active_page == 'ips' else '' }}" href="{{ url_for('wiki.ips') }}">IP Addresses</a></li>
+		  	<li><a class="dropdown-item {{ 'active' if active_page == 'domains' else '' }}" href="{{ url_for('wiki.domains') }}">Domain Names</a></li>
+	  		<li><a class="dropdown-item {{ 'active' if active_page == 'hashes' else '' }}" href="{{ url_for('wiki.filehashes') }}">File Hashes</a></li>
           </ul>
         </li>
       </ul>

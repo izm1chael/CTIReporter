@@ -63,10 +63,24 @@
       {% endif %}
       </div>
       <div>
-        <h5>Associated URL's</h5>
+        {% if page.domains %}
+        <h5>Associated Domain Names</h5>
+          <ul>
+          {% for domain in page.domains.split(',') %}
+            <li><a href="{{ url_for('wiki.domain', name=domain.strip()) }}">{{ domain|trim }}</a></li>
+          {% endfor %}
+          </ul>
+      {% endif %}
       </div>
       <div>
-        <h5>Associated File Hashes</h5>
+        {% if page.filehashes %}
+        <h5>Associated File Hash</h5>
+          <ul>
+          {% for filehash in page.filehashes.split(',') %}
+            <li><a href="{{ url_for('wiki.filehash', name=filehash.strip()) }}">{{ filehash|trim }}</a></li>
+          {% endfor %}
+          </ul>
+      {% endif %}
       </div>
       <div>
         {% if page.cves %}

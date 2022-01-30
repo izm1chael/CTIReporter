@@ -66,7 +66,7 @@ class EditorForm(FlaskForm):
     )
     ips = StringField('List all IP Addresses')
     domains = StringField('List all domains names')
-    hashes = StringField('List all file hashes ')
+    filehashes = StringField('List all file hashes ')
     cves = StringField('List the assocoaited CVEs')
     tags = StringField('Your Tags (Comma Separated)')
 

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "hashes" %}
+
+{% block title %}Index by Domain Names{% endblock title %}
+
+{% block content %}
+{% if filehashes %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>File Hash</th>
+				<th>Number of Articles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for filehash, pages in filehashes|dictsort %}
+				<tr>
+					<td><a href="{{ url_for('wiki.filehash', name=filehash) }}">{{ filehash }}</a></td>
+					<td>{{ pages|length }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no file hashes in use so far.</p>
+{% endif %}
+{% endblock content %}

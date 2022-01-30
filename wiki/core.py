@@ -317,6 +317,28 @@ class Page(object):
         self['ips'] = value
 
     @property
+    def domains(self):
+        try:
+            return self['domains']
+        except KeyError:
+            return ""
+
+    @domains.setter
+    def domains(self, value):
+        self['domains'] = value
+
+    @property
+    def filehashes(self):
+        try:
+            return self['filehashes']
+        except KeyError:
+            return ""
+
+    @filehashes.setter
+    def filehashes(self, value):
+        self['filehashes'] = value
+
+    @property
     def tags(self):
         try:
             return self['tags']
@@ -483,6 +505,36 @@ class Wiki(object):
                     ips[ip] = [page]
         return ips
 
+    def get_domains(self):
+        pages = self.index()
+        domains = {}
+        for page in pages:
+            pagedomains = page.domains.split(',')
+            for domain in pagedomains:
+                domain = domain.strip()
+                if domain == '':
+                    continue
+                elif domains.get(domain):
+                    domains[domain].append(page)
+                else:
+                    domains[domain] = [page]
+        return domains
+
+    def get_filehashes(self):
+        pages = self.index()
+        filehashes = {}
+        for page in pages:
+            pagefilehashes = page.filehashes.split(',')
+            for filehash in pagefilehashes:
+                filehash = filehash.strip()
+                if filehash == '':
+                    continue
+                elif filehashes.get(filehash):
+                    filehashes[filehash].append(page)
+                else:
+                    filehashes[filehash] = [page]
+        return filehashes
+
     def index_by_tag(self, tag):
         pages = self.index()
         tagged = []
@@ -506,6 +558,22 @@ class Wiki(object):
             if ip in page.ips:
                 iped.append(page)
         return sorted(iped, key=lambda x: x.title.lower())
+
+    def index_by_domain(self, domain):
+        pages = self.index()
+        domained = []
+        for page in pages:
+            if domain in page.domains:
+                domained.append(page)
+        return sorted(domained, key=lambda x: x.title.lower())
+
+    def index_by_filehash(self, filehash):
+        pages = self.index()
+        filehashed = []
+        for page in pages:
+            if filehash in page.filehashes:
+                filehashed.append(page)
+        return sorted(filehashed, key=lambda x: x.title.lower())
 
     def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body', 'date', 'apt_number', 'apt_name', 'threat_level', 'business_impact', 'ip_ioc', 'url_ioc', 'hash_ioc', 'cve_tags']):
         pages = self.index()
