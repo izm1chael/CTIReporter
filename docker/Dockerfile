@@ -1,9 +1,7 @@
 FROM ubuntu:latest
 
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get install python3 python3-pip git -y
+RUN apt-get update -y; apt-get upgrade -y; apt-get install python3 python3-pip git -y
 
 WORKDIR /opt
 RUN git clone https://github.com/izm1chael/CTIReporter.git
