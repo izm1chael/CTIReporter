@@ -474,6 +474,21 @@ class Wiki(object):
                     tags[tag] = [page]
         return tags
 
+    def get_cve_tags(self):
+        pages = self.index()
+        cve_tags = {}
+        for page in pages:
+            pagecvetags = page.cve_tags.split(',')
+            for cve in pagecvetags:
+                cve = cve.strip()
+                if cve == '':
+                    continue
+                elif cve_tags.get(cve):
+                    cve_tags[cve].append(page)
+                else:
+                    cve_tags[cve] = [page]
+        return cve_tags
+
     def index_by_tag(self, tag):
         pages = self.index()
         tagged = []
@@ -481,6 +496,14 @@ class Wiki(object):
             if tag in page.tags:
                 tagged.append(page)
         return sorted(tagged, key=lambda x: x.title.lower())
+
+    def index_by_cve(self, cve):
+        pages = self.index()
+        cve_tagged = []
+        for page in pages:
+            if cve in page.cve_tags:
+                cve_tagged.append(page)
+        return sorted(cve_tagged, key=lambda x: x.title.lower())
 
     def search(self, term, ignore_case=True, attrs=['title', 'tags', 'body', 'date', 'apt_number', 'apt_name', 'threat_level', 'business_impact', 'ip_ioc', 'url_ioc', 'hash_ioc', 'cve_tags']):
         pages = self.index()

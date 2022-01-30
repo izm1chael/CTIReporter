@@ -53,7 +53,14 @@
       {% endif %}
       </div>
       <div>
+        {% if page.cve_tags %}
         <h5>Associated IP's</h5>
+          <ul>
+          {% for cve in page.cve_tags.split(',') %}
+            <li><a href="{{ url_for('wiki.cve', name=cve.strip()) }}">{{ cve|trim }}</a></li>
+          {% endfor %}
+          </ul>
+      {% endif %}
       </div>
       <div>
         <h5>Associated URL's</h5>

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set active_page = "cve_tags" %}
+
+{% block title %}Index by CVE's{% endblock title %}
+
+{% block content %}
+{% if cve_tags %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Tag</th>
+				<th>Number of Articles</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cve, pages in cve_tags|dictsort %}
+				<tr>
+					<td><a href="{{ url_for('wiki.cve', name=cve) }}">{{ cve }}</a></td>
+					<td>{{ pages|length }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% else %}
+	<p>There are no cve's in use so far.</p>
+{% endif %}
+{% endblock content %}

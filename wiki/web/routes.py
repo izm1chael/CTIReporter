@@ -117,6 +117,17 @@ def tag(name):
     tagged = current_wiki.index_by_tag(name)
     return render_template('tag.html', pages=tagged, tag=name)
 
+@bp.route('/cve_tags/')
+@protect
+def cve_tags():
+    cve_tags = current_wiki.get_cve_tags()
+    return render_template('cve_tags.html', cve_tags=cve_tags)
+
+@bp.route('/cve/<string:name>/')
+@protect
+def cve(name):
+    cve_tagged = current_wiki.index_by_cve(name)
+    return render_template('cve.html', pages=cve_tagged, cve=name)
 
 @bp.route('/search/', methods=['GET', 'POST'])
 @protect
